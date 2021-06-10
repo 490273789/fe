@@ -1,0 +1,1 @@
+/Users/wangshaonan/Desktop/Study/Code/FEInterview/ES6/生成器/age.txt
