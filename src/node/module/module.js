@@ -53,12 +53,20 @@ Module.resolveFileName = (fileName) => {
   }
   return filePath
 }
+Module.cache = {}
 function req(fileName) {
-  let currentPath = Module.resolveFileName(fileName)
+  const currentPath = Module.resolveFileName(fileName)
+  // 缓存，如果两次请求相同的路径，则直接返回上次的缓存结果
+  if (Module.cache[currentPath]) {
+    return Module.cache[currentPath].exports
+  }
   const module = new Module(currentPath)
+  Module.cache[currentPath] = module
   module.load()
   return module.exports
 }
 
 const data = req('./a')
+const data1 = req('./a')
 console.log(data)
+console.log(data1)

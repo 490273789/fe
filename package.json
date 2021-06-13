@@ -4,7 +4,8 @@
   "description": "study frontend konwledge",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mine": "mycommand"
   },
   "repository": {
     "type": "git",
@@ -14,7 +15,9 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.1",
-    "commander": "^7.2.0"
+    "commander": "^7.2.0",
+    "mine": "^0.1.0",
+    "ncp": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
