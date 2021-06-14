@@ -1,7 +1,5 @@
 // 实现event 的on emit off once newListener
 
-const { Module } = require('webpack')
-
 function EventEmitter() {
   this._events = Object.create(null)
 }
@@ -26,8 +24,7 @@ EventEmitter.prototype.once = function (eventName, callback) {
   fn.l = callback
   this.on(eventName, fn)
 }
-// fn[fn1, fn2, fn3]
-// callback = fn3
+
 EventEmitter.prototype.off = function (eventName, callback) {
   this._events[eventName] = this._events[eventName].filter((fn) => {
     // 如果fn 不等于 callback 那么继续判断，因为once中更改了callback，不过在l属性上对callback进行了缓存，只有两个都不相同的新情况下才保留
