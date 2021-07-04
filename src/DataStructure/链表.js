@@ -1,20 +1,20 @@
 class Node {
   constructor(element) {
-    this.element = element;
-    this.next = null;
+    this.element = element
+    this.next = null
   }
 }
 
 class LinkList {
   constructor() {
-    this.head = null;
-    this.length = 0;
+    this.head = null
+    this.length = 0
   }
   /**
    *获取链表
    */
   getList() {
-    return this.head;
+    return this.head
   }
   /**
    *查询节点,返回节点的索引，如果没有查到则返回-1
@@ -22,15 +22,15 @@ class LinkList {
   search(node) {
     if (this.head) {
       if (this.head.element === node) {
-        return 0;
+        return 0
       } else {
-        let current = this.head;
-        let index = 0;
+        let current = this.head
+        let index = 0
         while (current.next && current.element !== node) {
-          index++;
-          current = current.next;
+          index++
+          current = current.next
         }
-        return current.next ? index : -1;
+        return current.next ? index : -1
       }
     }
   }
@@ -38,16 +38,16 @@ class LinkList {
    *追加节点
    */
   append(val) {
-    let node = new Node(val);
+    let node = new Node(val)
     if (!this.head) {
-      this.head = node;
+      this.head = node
     } else {
-      let current = this.head;
+      let current = this.head
       while (current.next) {
-        current = current.next;
+        current = current.next
       }
-      current.next = node;
-      this.length++;
+      current.next = node
+      this.length++
     }
   }
 
@@ -56,25 +56,25 @@ class LinkList {
    */
   insert(position, val) {
     if (position >= 0 && position <= this.length) {
-      let node = new Node(val);
-      let current = this.head;
-      let index = 0;
-      let pre = null;
+      let node = new Node(val)
+      let current = this.head
+      let index = 0
+      let pre = null
       if (position === 0) {
-        current.next = this.head;
-        this.head = node;
+        current.next = this.head
+        this.head = node
       } else {
         while (current.next && position !== index) {
-          index++;
-          pre = current;
-          current = current.next;
+          index++
+          pre = current
+          current = current.next
         }
-        pre.next = node;
-        node.next = current;
-        this.length++;
+        pre.next = node
+        node.next = current
+        this.length++
       }
     } else {
-      console.log("越界");
+      console.log('越界')
     }
   }
 
@@ -82,17 +82,17 @@ class LinkList {
    *删除节点
    */
   remove(val) {
-    let current = this.head;
-    let pre = null;
+    let current = this.head
+    let pre = null
     if (this.head.element === val) {
-      this.head = current.next;
+      this.head = current.next
     } else {
       while (current.next && current.element !== val) {
-        pre = current;
-        current = current.next;
+        pre = current
+        current = current.next
       }
-      pre.next = current.next;
-      this.length--;
+      pre.next = current.next
+      this.length--
     }
   }
 
@@ -100,13 +100,13 @@ class LinkList {
    *链表是否为空
    */
   isEmpty() {
-    return !this.length;
+    return !this.length
   }
 
   /**
    *查询链表大小
    */
   size() {
-    return this.length;
+    return this.length
   }
 }

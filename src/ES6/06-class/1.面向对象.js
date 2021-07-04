@@ -9,21 +9,21 @@
 // 1. 打开冰箱门
 function openDoor() {}
 // 2. 装大象
-function entryElement () {}
+function entryElement() {}
 // 3. 关闭冰箱门
-function closeDoor () {}
+function closeDoor() {}
 
 // 2、面向对象
 // 1. 定义大象对象
-function Element (name) {
-    this.name = name
+function Element(name) {
+  this.name = name
 }
 // 2. 定义冰箱对象
-function firdge () {
-    this.name = name
-    this.openDoor = function(){}
-    this.entryElement = function(){}
-    this.closeDoor = function(){}
+function firdge() {
+  this.name = name
+  this.openDoor = function () {}
+  this.entryElement = function () {}
+  this.closeDoor = function () {}
 }
 // 3.使用
 const ele = new Element()

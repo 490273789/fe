@@ -99,8 +99,7 @@ function sortLink(link) {
   return head
 }
 
-console.log('sortLink:',sortLink(l3))
-
+console.log('sortLink:', sortLink(l3))
 
 // 真题描述：给定一个排序链表，删除所有含有重复数字的结点，只保留原始链表中 没有重复出现的数字。
 // 输入: 1->2->3->3->4->4->5
@@ -125,7 +124,7 @@ const l4 = {
 }
 
 function deleteDuplicates(link) {
-  if(!link || !link.next) {
+  if (!link || !link.next) {
     return
   }
 
@@ -141,7 +140,7 @@ function deleteDuplicates(link) {
   while (current.next && current.next.next) {
     if (current.next.value === current.next.next.value) {
       const value = current.next.value
-      while(current.next && current.next.value === value) {
+      while (current.next && current.next.value === value) {
         current.next = current.next.next
       }
     } else {
@@ -152,4 +151,4 @@ function deleteDuplicates(link) {
   return dummy.next
 }
 
-console.log('deleteDuplicates:',deleteDuplicates(l4))
+console.log('deleteDuplicates:', deleteDuplicates(l4))

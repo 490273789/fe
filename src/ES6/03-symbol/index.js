@@ -18,55 +18,55 @@ console.log(sys1 === sys2) // fasle
 // ## 共享符号 Symbol.for()
 // SymbolFor内部实现
 const SymbolFor = (() => {
-    const global = {}
-    return function (name) {
-        if (!global[name]) {
-            global[name] = Symbol(name)
-        }
-        return global[name]
+  const global = {}
+  return function (name) {
+    if (!global[name]) {
+      global[name] = Symbol(name)
     }
+    return global[name]
+  }
 })()
 
 const sbl1 = SymbolFor('a')
 const sbl2 = SymbolFor('a')
 console.log('SymbolFor: ', sbl1 === sbl2) // true
 
-// ## 知名符号 
+// ## 知名符号
 // 知名符号是一些具有特殊含义的共享符号，通过Symbol的静态属性得到
 // ES6延续了ES5的思想：减少魔法，暴露内部实现
 // 因此ES6用知名符号暴露了某些场景的内部实现
 // 1.Symbol.hasInstance
-function A () { }
+function A() {}
 const obj = new A()
 Object.defineProperty(A, Symbol.hasInstance, {
-    value: function () {
-        return false
-    }
+  value: function () {
+    return false
+  },
 })
 console.log('instanceod: ', obj instanceof A) // true
 console.log('hasInstance: ', A[Symbol.hasInstance](obj)) // false
 
 // 2.Symbol.isConcatSpreadable
 const arr1 = [3]
-const arr2 = [5,6,7]
+const arr2 = [5, 6, 7]
 
 // arr2[Symbol.isConcatSpreadable] = false // false 链接的数组不会展开
 arr2[Symbol.isConcatSpreadable] = true // 默认是true  链接的数组会展开
 // const result = arr1.concat(9, arr2) // [ 3, 9, [5, 6, 7 ]]
 const result1 = arr1.concat(9, arr2) // [ 3, 9, 5, 6, 7 ]
 // console.log(result);
-console.log(result1);
+console.log(result1)
 
 // 3.Symbol.toStringTag
 // 该知名符号会影响Object.prototype.toString 的返回值
 
 class Person {
-    get [Symbol.toStringTag] (){
-        return "Person"
-    }
+  get [Symbol.toStringTag]() {
+    return 'Person'
+  }
 }
 const p = new Person()
-const arr3 = [32,43]
+const arr3 = [32, 43]
 console.log(Object.prototype.toString.apply(p))
 console.log(Object.prototype.toString.apply(arr3))
 // 4.Symbol.toPrimitive
