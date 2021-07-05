@@ -8,28 +8,37 @@ console.log([1, [2, [3, [4, [5]]]]].flat(100))
 
 // reduce 原理
 
-
 // 函数的组合compose redux
-const compose = (...args) => (...values) => {
-  let fn = args.pop()
-  return args.reduceRight((prev, current) => current(prev), fn(...values))
-}
+const compose =
+  (...args) =>
+  (...values) => {
+    let fn = args.pop()
+    return args.reduceRight((prev, current) => current(prev), fn(...values))
+  }
 
 // 优化 redux 实现
 
 export default function compose(...funcs) {
-    if(funcs.length === 0) {
-        return arg => arg
-    }
-    if(funcs.length === 1) {
-        return funcs[0]
-    }
+  if (funcs.length === 0) {
+    return (arg) => arg
+  }
+  if (funcs.length === 1) {
+    return funcs[0]
+  }
 
-    return funcs.reduce((a, b)=> (...args) => a(b(...args))) 
+  return funcs.reduce(
+    (a, b) =>
+      (...args) =>
+        a(b(...args))
+  )
 }
 
 const compose2 = (...args) =>
-  args.reduce((prev, current) => (...values) => prev(current(...values)))
+  args.reduce(
+    (prev, current) =>
+      (...values) =>
+        prev(current(...values))
+  )
 
 const sum = (a, b) => a + b
 
