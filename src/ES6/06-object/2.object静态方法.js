@@ -59,17 +59,17 @@ console.info(JSON.stringify(obj))
 // 五、Object.defineProperty(obj, prop, descriptor)
 let obj3 = {}
 
-let mame = 'w'
+let name = 'w'
 Object.defineProperty(obj3, 'name', {
   configurable: true,
   enumerable: true,
   get: function () {
     console.info('get name .')
-    return mame
+    return name
   },
   set: function (newName) {
     console.info('set new name is ' + newName)
-    mame = newName
+    name = newName
   },
 })
 

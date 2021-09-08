@@ -109,7 +109,7 @@ count(arr, 1, 2, 3, 4, 5)
 
 // 扩展运算符 --> ... 扒掉括号的操作([],{}) ...[1,2,3,[4],5] -->1,2,3,[4],5
 //求去掉最大值和最小值得平均数
-function avearge(...arg) {
+function average(...arg) {
   //restArguments
   arg.sort(function (a, b) {
     return a - b
@@ -127,7 +127,7 @@ function computedScore(...arg) {
   })
   return sum / arg.length
 }
-let avg = avearge(12, 13, 45, 98, 1, 23)
+let avg = average(12, 13, 45, 98, 1, 23)
 
 var arr1 = [1, 2, 3, 4]
 var arr2 = [4, 5, 6, 7]

@@ -16,6 +16,7 @@ Object.defineProperty(obj1, 'd', {
 
 // Uncaught TypeError: Invalid property descriptor. Cannot both specify accessors and a value or writable attribute, #<Object>
 console.log(Object.getOwnPropertyDescriptors(obj1))
+
 // 以下为不同方法添加对象属性的默认行为
 // a: {value: "1", writable: true, enumerable: true, configurable: true}
 // b: {value: "2", writable: true, enumerable: true, configurable: true}
@@ -35,4 +36,4 @@ const obj2 = {
   create() {},
 }
 
-// CONST和Object.defineProperty()的关系
+// const和Object.defineProperty()的关系

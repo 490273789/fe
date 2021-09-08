@@ -19,7 +19,7 @@ const game = 'GAME'
 const obj5 = {
   name, // 成员速写
   say() {}, // 方法速写
-  [front + stuff]: name, //slem-stuff: 'zhangsan'
+  [front + stuff]: name, //elem-stuff: ''
   [game]() {
     console.log('lol')
   },

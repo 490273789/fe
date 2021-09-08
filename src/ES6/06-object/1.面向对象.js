@@ -19,7 +19,7 @@ function Element(name) {
   this.name = name
 }
 // 2. 定义冰箱对象
-function firdge() {
+function fridge() {
   this.name = name
   this.openDoor = function () {}
   this.entryElement = function () {}
@@ -27,7 +27,7 @@ function firdge() {
 }
 // 3.使用
 const ele = new Element()
-const firdge = new firdge()
-firdge.openDoor()
-firdge.entryElement(ele)
-firdge.closeDoor()
+const fridge = new fridge()
+fridge.openDoor()
+fridge.entryElement(ele)
+fridge.closeDoor()

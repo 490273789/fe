@@ -1,26 +1,26 @@
 class MySet {
   constructor(iterator = []) {
-    if (typeof iterator !== 'funtion') {
+    if (typeof iterator !== 'function') {
       throw new TypeError(`您提供的${iterator}不是可迭代对象！`)
     }
-    this._datas = []
+    this._data = []
     for (let item of iterator) {
       this.add(item)
     }
   }
 
   get size() {
-    return this._datas.length
+    return this._data.length
   }
 
   add(data) {
     if (!this.has(data)) {
-      this._datas.push(data)
+      this._data.push(data)
     }
   }
 
   has(data) {
-    for (let item of this._datas) {
+    for (let item of this._data) {
       if (this.isEqual(data, item)) {
         return true
       }
@@ -29,13 +29,13 @@ class MySet {
   }
 
   clear() {
-    this._datas.length = 0
+    this._data.length = 0
   }
 
   delete(data) {
-    for (let i = 0; i < this._datas.length; i++) {
-      if (this.isEqual(data, this._datas[i])) {
-        this._datas.splice(i, 1)
+    for (let i = 0; i < this._data.length; i++) {
+      if (this.isEqual(data, this._data[i])) {
+        this._data.splice(i, 1)
         return true
       }
     }
@@ -47,7 +47,7 @@ class MySet {
    * @memberof MySet
    */
   *[Symbol.iterator]() {
-    for (const item of this._datas) {
+    for (const item of this._data) {
       yield item
     }
   }
@@ -58,7 +58,7 @@ class MySet {
    * @memberof MySet
    */
   forEach(callback) {
-    for (const item of this._datas) {
+    for (const item of this._data) {
       callback(item, item, this)
     }
   }

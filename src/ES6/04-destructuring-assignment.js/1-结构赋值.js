@@ -6,15 +6,17 @@ const resData = {
   casts: {},
 }
 
-// let {director, imgs, casts} = resData1;//结果：director = 'xxx',imgs = [],casts = {}   进一步的写法如下
-// let {director, imgs, casts} = {director: 'xxx',imgs: [],casts: {}}//{director, imgs, casts}是ES6的属性简写，最中完整版写法如下
-// let {director: director, imgs: imgs, casts: casts} = {director: 'xxx', imgs: [],casts: {}}//通过后面的值取值
-//key为规则，比如前半部分的imgs的value写为img简写也是可以的
+// let {director, imgs, casts} = resData1;//结果：director = 'xxx',imgs = [],casts = {}
+// 进一步的写法如下，是ES6的属性简写，最中完整版写法如下
+// let {director, imgs, casts} = {director: 'xxx',imgs: [],casts: {}}//{director, imgs, casts}
+// 原理
+// let {director: director, imgs: imgs, casts: casts} = {director: 'xxx', imgs: [],casts: {}}
 
 // 写法二
 let director, imgs, casts
 ;({ director, imgs, casts } = resData)
-let { imgs: qwe } = resData // 跟换变量的名字
+// 修改变量的名字
+let { imgs: qwe } = resData
 console.log(qwe)
 
 // 解构失败：解构出来的值为undefined
