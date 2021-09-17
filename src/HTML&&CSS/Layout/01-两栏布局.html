@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>两栏布局float</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .title {
+        padding: 10px 5px;
+      }
+      .wrap1 {
+        border: 3px solid #f96;
+        margin-bottom: 10px;
+        /* overflow: hidden; */
+      }
+      .left1 {
+        float: left;
+        width: 200px;
+        height: 200px;
+        background: #9f6;
+        /* 或者父元素overflow: hidden; */
+        clear: both;
+      }
+      .right1 {
+        height: 200px;
+        margin-left: 3px;
+        background: #96f;
+        margin-left: 200px;
+        /* overflow: hidden; */
+      }
+      .wrap2 {
+        position: relative;
+        border: 3px solid #f96;
+        margin-bottom: 10px;
+      }
+
+      .left2 {
+        width: 200px;
+        height: 200px;
+        background: #9f6;
+      }
+      .right2 {
+        position: absolute;
+        top: 0;
+        left: 200px;
+        right: 0;
+        height: 200px;
+        background: #96f;
+      }
+
+      .wrap3 {
+        display: flex;
+        border: 3px solid #f96;
+        margin-bottom: 10px;
+      }
+
+      .left3 {
+        width: 200px;
+        height: 200px;
+        background: #9f6;
+      }
+      .right3 {
+        flex: 1;
+        background: #96f;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- float + bfc 实现 -->
+    <div class="title">float + bfc 实现</div>
+    <div class="wrap1">
+      <div class="left1">left1</div>
+      <div class="right1">right1</div>
+    </div>
+
+    <!-- position实现 -->
+    <div class="title">position实现</div>
+    <div class="wrap2">
+      <div class="left2">left</div>
+      <div class="right2">right</div>
+    </div>
+
+    <!-- flex实现 -->
+    <div class="title">flex实现</div>
+    <div class="wrap3">
+      <div class="left3">left</div>
+      <div class="right3">right</div>
+    </div>
+  </body>
+</html>
