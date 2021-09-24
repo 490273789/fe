@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //第一种
+promise.then((res) => {
+  console.log('then:', res);
+}).catch((err) => {
+  console.log('catch:', err);
+})
+//第二种
+promise.then((res) => {
+  console.log('then:', res);
+}, (err) => {
+  console.log('catch:', err);
+})
+
+
+console.log("AAAA");
+setTimeout(() => console.log("BBBB"), 1000);
+const start = new Date();
+while (new Date() - start < 3000) {}
+console.log("CCCC");
+setTimeout(() => console.log("DDDD"), 0);
+new Promise((resolve, reject) => {
+   console.log("EEEE");
+  foo.bar(100);
+})
+.then(() => console.log("FFFF"))
+.then(() => console.log("GGGG"))
+.catch(() => console.log("HHHH"));
+console.log("IIII");
+
+
+function Foo() {
+  getName = function () {
+    console.log(1);
+  };
+  return this;
+}
+Foo.getName = function () {
+  console.log(2);
+};
+Foo.prototype.getName = function () {
+  console.log(3);
+};
+var getName = function () {
+  console.log(4);
+};
+function getName() {
+  console.log(5);
+}
+Foo.getName();
+Foo().getName();
+getName();
+new Foo().getName();
+
+async function  async1() {
+  console.log('async1 start')
+  await async2()
+  console.log('async1 end')
+}
+
+async function async2() {
+  console.log('async2')
+}
+
+console.log('script start')
+
+async1()
+
+setTimeout(() => {
+  console.log('timeout')
+})
+
+new Promise((resolved, rejected) => {
+  resolved()
+  console.log('promise')
+}).then(()=> {
+  console.log('then')
+})
+
+console.log('script end')
+// script start
+// VM69:2 async1 start
+// VM69:8 async2
+// VM69:21 promise
+// VM69:26 script end
+// VM69:4 async1 end
+// VM69:23 then
+// undefined
+// VM69:16 timeout
+  </script>
+</body>
+</html>

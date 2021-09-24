@@ -1,6 +1,4 @@
-let obj1 = {
-  a: '1',
-}
+let obj1 = {}
 obj1.b = '2'
 Object.defineProperty(obj1, 'c', {})
 Object.defineProperty(obj1, 'd', {
@@ -21,7 +19,7 @@ console.log(Object.getOwnPropertyDescriptors(obj1))
 // b: {value: "2", writable: true, enumerable: true, configurable: true}
 // c: {value: undefined, writable: false, enumerable: false, configurable: false}
 // d: {enumerable: false, configurable: false, get: ƒ, set: ƒ}
-console.log(obj1)
+console.log('obj1', obj1)
 obj1.c = '4' // 不生效
 
 // 默认configurable为false，所以在此设置configurable、enumerable、value、writable中的任意属性都会报错
