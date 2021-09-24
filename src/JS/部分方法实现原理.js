@@ -50,4 +50,20 @@ function _new() {
   return target
 }
 
+function newFn(target, ...args) {
+
+  if(Object.prototype.toString.call(target) !== "[object Function]") return;
+  const defaultResult = Object.create({}, target.prototype)
+
+  const result = target.apply(defaultResult, args)
+
+  if(result && (typeof result === 'object' || typeof result === 'function')) {
+    return result
+  }
+  return defaultResult
+  
+}
+
+
+
 // Object.create()实现原理

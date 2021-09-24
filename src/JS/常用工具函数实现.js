@@ -177,7 +177,8 @@ export function broadcast(component, eventName, params) {
  * @return {*}
  */
 export function trim(str) {
-  return str.replace(/^(\s)|*(\s)*$/g, '')
+  return str.replace(/(^\s+)|(\s+$)/g, '')//trim函数去掉前后空格
+  // return params.replace(/(\s+)/g, '')//trim函数去掉全部空格
 }
 
 /**
