@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>双飞翼</title>
+    <style>
+      .wrap {
+        overflow: hidden;
+        border: 3px solid #f96;
+      }
+
+      .left {
+        float: left;
+        width: 200px;
+        height: 200px;
+        margin-left: -100%;
+        background: #9f6;
+      }
+
+      .middle {
+        float: left;
+        width: 100%;
+      }
+
+      .content {
+        height: 200px;
+        margin: 0 200px;
+        background: #36d;
+      }
+
+      .right {
+        float: left;
+        width: 200px;
+        height: 200px;
+        margin-left: -200px;
+        background: #96f;
+      }
+    </style>
+  </head>
+  <body>
+    <div>优点：middle结构写在最前面，优先渲染</div>
+    <div>双飞翼布局源自淘宝 UED</div>
+    <div class="wrap">
+      <div class="middle">
+        <div class="content">content</div>
+      </div>
+      <div class="left">left</div>
+      <div class="right">right</div>
+    </div>
+  </body>
+</html>

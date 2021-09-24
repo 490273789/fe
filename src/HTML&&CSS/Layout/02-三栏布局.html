@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>三栏布局</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .title {
+        padding: 10px 5px;
+      }
+      .wrap1 {
+        position: relative;
+        border: 3px solid #f69;
+      }
+      .left1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        background: #9f6;
+      }
+
+      .right1 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 200px;
+        width: 200px;
+        background: #96f;
+      }
+
+      .middle1 {
+        height: 200px;
+        margin-left: 200px;
+        margin-right: 200px;
+        background: #36d;
+      }
+
+      .wrap2 {
+        border: 3px solid #f69;
+      }
+      .left2 {
+        float: left;
+        height: 200px;
+        width: 200px;
+        background: #9f6;
+      }
+
+      .right2 {
+        float: right;
+        height: 200px;
+        width: 200px;
+        background: #96f;
+      }
+
+      .middle2 {
+        height: 200px;
+        background: #36d;
+        margin-left: 200px;
+        margin-right: 200px;
+      }
+      .wrap3 {
+        display: flex;
+        border: 3px solid #f69;
+      }
+      .left3 {
+        width: 200px;
+        height: 200px;
+        background: #9f6;
+      }
+      .right3 {
+        width: 200px;
+        height: 200px;
+        background: #96f;
+      }
+
+      .middle3 {
+        flex: 1;
+        background: #36d;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title">position实现</div>
+    <div class="wrap1">
+      <div class="left1">left1</div>
+      <div class="middle1">middle</div>
+      <div class="right1">right1</div>
+    </div>
+
+    <div class="title">浮动实现</div>
+    <div class="wrap2">
+      <div class="left2">left2</div>
+      <div class="right2">right2</div>
+      <div class="middle2">middle2</div>
+    </div>
+
+    <div class="title">flex实现</div>
+    <div class="wrap3">
+      <div class="left3">left3</div>
+      <div class="middle3">middle3</div>
+      <div class="right3">right3</div>
+    </div>
+  </body>
+</html>

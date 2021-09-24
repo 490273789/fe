@@ -90,7 +90,7 @@ function prePromiseDeep(dir, callback) {
 }
 
 // 前序 深度 并行 async
-function preAsynceDeep(dir, callback) {
+function preAsyncDeep(dir, callback) {
   fs.stat(dir, function (err, statObj) {
     console.log(dir)
     // 判断是文件还是文件夹

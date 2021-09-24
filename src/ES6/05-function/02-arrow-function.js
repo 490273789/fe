@@ -57,7 +57,7 @@ var newPrint = obj.print.bind(window) //window
 var newnewPrint = newPrint.bind(obj) //bind执行window
 
 newPrint()
-newnewPrint()
+newPrint()
 
 var obj1 = {
   name: 'obj1',
@@ -72,7 +72,7 @@ newPrint() //window
 // 2、不能被new操作符执行
 // 3、箭头函数不能被作为构造函数，更多功能用于计算，数据流向，方便javascript引擎优化代码
 // 4、箭头函数具有绑定this的能力，绑定后就不会改变，this不会像es5中的this根据函数不同的调用方式而改变。
-// 5、箭头函数内部的arguments this由定义时外围最接近的一层非箭头函数的arguments this的值决定
+// 5、箭头函数内部的arguments this由定义时非箭头函数的父级的arguments this的值决定
 // 6、箭头函数定义以后必须要有存储的位置
 
 // a、使用变量存储
@@ -97,7 +97,7 @@ let sum7 = (a, b) => {
 sum7(1, 2)
 
 function outer() {
-  // argumnets = [4, 5, 6]
+  // arguments = [4, 5, 6]
   let sum8 = (a, b) => {
     console.log(arguments) //[4, 5, 6]
   }
@@ -131,13 +131,13 @@ let obj2 = {
 obj2.function()
 
 // this的实际使用
-var ms = 'outerms'
+var ms = 'ourTerms'
 let obj3 = {
   ms: 'abd',
   fn() {
     var self = this
     setTimeout(function () {
-      console.log(this.ms) //outerms -- this指向window
+      console.log(this.ms) //ourTerms -- this指向window
       console.log(self.ms) //abd -- this指向obj3
     }, 200)
   },
@@ -151,11 +151,11 @@ let obj3 = {
 obj3.fn()
 
 // 箭头函数处理数组
-// 与之前相比代码量更少了
 let arr3 = [10, 20, 30, 40]
 console.log(
   arr3.filter(function (ele) {
     return ele > 20 //[30, 40]
   })
 )
+// 与之前相比代码量更少了
 console.log(arr3.filter((ele) => ele > 20)) //[30, 40]

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BFC</title>
+    <style>
+      .bfc_area {
+        overflow: hidden;
+      }
+      .column {
+        width: 31.33%;
+        background-color: green;
+        float: left;
+        margin: 0 1%;
+      }
+      /*  Establishing a new block formatting 
+    context in the last column */
+      .column:last-child {
+        float: none;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 格式化块级上下文 （Block Formatting Context,BFC） -->
+    <!-- 是一个独立的渲渲染区域，她规定了块级元素如何布局，并且与区域外部毫不相干 -->
+    <!-- 
+      创建快格式上下文：
+      1、根元素(HTML)
+      2、浮动元素（float不是none）
+      3、绝对定位元素（position为absolute或fixed）
+      4、display为inline-block、table-cell、table-caption、table、inline-table、flex、inline-flex、grid、inline-grid
+      4、position值为 absolute、fixed
+     -->
+
+    <!-- 
+       BFC的布局规则：
+       1、内部的box垂直方向一个接一个的方式
+       2、box垂直方向的距离由margin决定，属于同一个BFC的两个相邻box的margin会发生重叠
+       3、每个元素的左外边距与包含块的左边界相接触（从左向右），即使浮动元素也是如此。（这说明BFC中子元素不会超出他的包含块，而position为absolute的元素可以超出他的包含块边界）
+       4、BFC区域不会与float box重叠
+       5、BFC就是页面上的一个独立容器，容器里面的子元素不会影响到外面的元素
+       6、计算BFC内部的高度时，浮动元素也跟着计算
+    -->
+
+    <div class="wrap">
+      <div class="normal_flow"></div>
+      <div class="bfc_area">
+        <span>1</span>
+        <div>3</div>
+        <div>4</div>
+        <span>2</span>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="column">column 1</div>
+      <div class="column">column 2</div>
+      <div class="column">column 3</div>
+    </div>
+  </body>
+</html>

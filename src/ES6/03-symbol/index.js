@@ -13,7 +13,7 @@
 // - 符号无法被隐式转换因此不能被用于数学运算、字符串拼接或其他隐式转换场景，单符号可以显示的转换为字符串，通过String构造函数进行装换即可。console.log之所以能够输出符号，是他在内部进行了显示转换。
 const sys1 = Symbol('a')
 const sys2 = Symbol('a')
-console.log(sys1 === sys2) // fasle
+console.log(sys1 === sys2) // false
 
 // ## 共享符号 Symbol.for()
 // SymbolFor内部实现
@@ -43,7 +43,7 @@ Object.defineProperty(A, Symbol.hasInstance, {
     return false
   },
 })
-console.log('instanceod: ', obj instanceof A) // true
+console.log('instance: ', obj instanceof A) // true
 console.log('hasInstance: ', A[Symbol.hasInstance](obj)) // false
 
 // 2.Symbol.isConcatSpreadable
