@@ -496,3 +496,12 @@ export function asyncLoaded(url, callback) {
   script.src = url
   document.head.appendChild(script)
 }
+
+class Demo {
+  test
+  constructor() {
+    this.test1 = '1'
+  }
+}
+
+let a = new Demo()
