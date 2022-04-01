@@ -1,21 +1,27 @@
-var a = '10'
+let i = 0
 
-function b () {
-  // console.log(this)
-  console.log(a)
+// 使用setTimeout实现setInterval
+function mySetInterval(fn,time) {
+  function interval() {
+    setTimeout(interval,time)
+    fn();
+  }
+  setTimeout(interval,time)
 }
 
-// function c (fn) {
-//   var a = '20';
-//   (function(){
-//     fn()
-//   }())  
-// }
+mySetInterval(()=> {
+  console.log(i++)
+},1000)
 
-function c (fn) {
-  var a = '20';
-  fn() 
+// 使用setInterval实现setTimeout从
+let p = 0
+function mySetTimeout(fn, time) {
+  const timer = setInterval(()=>{
+    clearInterval(timer)
+    fn()
+  },time)
 }
 
-c(b)
-
+mySetTimeout(()=> {
+  console.log(p++)
+},1000)
