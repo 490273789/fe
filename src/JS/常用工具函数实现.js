@@ -1,3 +1,10 @@
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+function type (value) {
+  return Object.prototype.toString.call(value).slice(8, -1)
+}
 /**
  * @description: 防抖函数- 操作结束后一段时间wait秒内，没有再次触发该操作，fn才执行
  * 使用场景：input框输入的模糊查询、防止重复抽奖/支付等

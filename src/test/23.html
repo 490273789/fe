@@ -1,43 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <script>
-    // 1 call实现原理
-    function _call(target, ...args) {
-      if(!target) target = window
-      target.fn = this
-      let result = target.fn(...args)
-      delete target.fnc
-      return result
-    }
-    // 2 apply实现原理
-    // 3 bind实现原理
-    // 4 下划线转大驼峰
-    let str1 = 'a-ba-cd'
-    function transformCame(str) {
-      return str.replace(/-(\w)/g,($1,$2) => {
-        return $2.toUpperCase()
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      .wrap {
+        height: 100%;
+        overflow-y: auto;
+      }
+      .content {
+        height: 5000px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="content"></div>
+    </div>
+    <script>
+      // 1 call实现原理
+      Function.prototype._call = function (target, ...args) {
+        if (!target) target = window
+        target.fn = this
+        let result = target.fn(...args)
+        delete target.fnc
+        return result
+      }
+
+      // 2 apply实现原理
+      Function.prototype._apply = function (target, args) {
+        if (!target) target = window
+        target.fn = this
+        let result = ''
+        if (!args) {
+          result = target.fn()
+        } else {
+          result = target.fn(...args)
+        }
+        delete target.fn
+        return result
+      }
+
+      // 3 bind实现原理
+      Function.prototype._bind = function (context) {
+        if (typeof context === 'function') {
+          return
+        }
+
+        const _self = this
+
+        const args = Array.prototype.slice.call(arguments, 1)
+
+        return function () {
+          const bindArgs = Array.prototype.slice.call(arguments)
+          _self.apply(context, args.concat(bindArgs))
+        }
+      }
+      const bindObj = {
+        name: 'wsn',
+      }
+      function bindTest(sex, age) {
+        console.log(this.name)
+        console.log(sex, age)
+      }
+
+      const bind1 = bindTest._bind(bindObj, '男')
+      bind1(18)
+
+      // 4 下划线转大驼峰
+      let str1 = 'a-ba-cd'
+      function transformCame(str) {
+        return str.replace(/-(\w)/g, ($1, $2) => {
+          return $2.toUpperCase()
+        })
+      }
+
+      let str3 = transformCame(str1)
+      console.log(str3)
+
+      // 5 大驼峰转下划线
+      function transLine(str) {
+        return str.replace(/([A-Z])/g, '_$1').toLowerCase()
+      }
+      let str4 = 'AeDcvGa'
+      console.log(transLine(str4))
+
+      // 6 深度拷贝
+      function deepClone(value, hash = new WeakMap()) {
+        if (value === null) return value
+        if (typeof value !== 'object') return value
+        if (value instanceof RegExp) return new Regexp(value)
+        if (value instanceof Date) return new Date(value)
+        const instance = new value.constructor()
+        if (hash.has(value)) {
+          return hash.get(value)
+        }
+        hash.set(value, instance)
+        for (let key in value) {
+          if (value.hasOwnProperty(key)) {
+            instance[key] = deepClone(value[key], hash)
+          }
+        }
+        return instance
+      }
+
+      const deepObj = {
+        a: 'a',
+        b: {
+          name: 'wsn',
+        },
+      }
+      deepObj.c = deepObj
+      console.log(deepClone(deepObj))
+
+      // 7 冒泡排序
+      function bubble(arr) {
+        const length = arr.length
+
+        for (let i = 0; i < length - 1; i++) {
+          let hasDone = false
+          console.log(i)
+          for (let j = 0; j < length - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+              ;[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+              hasDone = true
+            }
+          }
+          if (!hasDone) break
+        }
+        return arr
+      }
+
+      const arr = [8, 4, 1, 0, 9, 10]
+
+      console.log(bubble(arr))
+      console.log(arr)
+
+      // 8 new实现原理
+      function _new() {
+        const constructor = Array.prototype.shift.call(arguments)
+
+        if (typeof constructor !== 'function') return
+
+        let result = {}
+        result.__proto__ = constructor.prototype
+
+        const fnResult = constructor.call(result, arguments)
+
+        if (fnResult) {
+          if (typeof fnResult === 'object') {
+            result = Object.setPrototype(fnResult, constructor.prototype)
+          } else if (typeof fnResult === 'function') {
+            result = fnResult
+          }
+        }
+        return result
+      }
+
+      // 9 防抖函数
+      function debounce(fn, delay, leading = false) {
+        let timer = null
+        return function () {
+          if (timer) clearTimeout(timer)
+          const _this = this
+          const arg = arguments
+
+          if (leading) {
+            let isInvoke = false
+            if(!timer) {
+              fn.apply(_this, arg)
+              isInvoke = true
+            } 
+
+            timer = setTimeout(() => {
+              timer = null
+              if(!isInvoke) {
+                fn.apply(_this, arg)
+              }
+            },delay)
+          } else {
+            timer = setTimeout(() => {
+              fn.apply(_this, arg)
+            }, delay)
+          }
+        }
+      }
+      // function scroll(name, age) {
+      //   console.log(name, age)
+      // }
+      // const a = debounce(scroll, 2000, true)
+
+      // const oCon = document.getElementsByClassName('wrap')[0]
+      // oCon.addEventListener('scroll', () => {
+      //   a('wsn', 'age')
+      // })
+
+      // 10 节流函数
+      function throttle(fn, interval) {
+        let lastTime = 0;
+        let timer = null
+        return function () {
+          const _this = this
+          const args = arguments
+
+          let now = new Date().getTime()
+          if(now - lastTime > interval) {
+            if(timer) {
+              clearTimeout(timer)
+              timer = null
+            }
+
+            fn.apply(_this, args)
+            lastTime = now
+          } else if (timer === null) {
+            timer = setTimeout(()=> {
+              timer = null
+              fn.apply(_this, args)
+              lastTime = now
+            }, interval)
+          }
+        }
+      }
+
+      function scroll(name, age) {
+        console.log(name, age)
+      }
+      const a = throttle(scroll, 1000)
+
+      const oCon = document.getElementsByClassName('wrap')[0]
+      oCon.addEventListener('scroll', () => {
+        a('wsn', 'age')
       })
-    }
-
-    let str3 = transformCame(str1)
-    console.log(str3)
-
-
-
-    // 5 大驼峰转下划线
-    // 6 深度拷贝
-    // 7 冒泡排序
-    // 8 new实现原理
-    // 9 防抖函数
-    // 10 节流函数
-
-  </script>
-</body>
+    </script>
+  </body>
 </html>

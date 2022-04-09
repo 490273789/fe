@@ -52,7 +52,7 @@ function _new() {
 
 function newFn(target, ...args) {
 
-  if(Object.prototype.toString.call(target) !== "[object Function]") return;
+  if(typeof target !== 'function') return;
   const defaultResult = Object.create({}, target.prototype)
 
   const result = target.apply(defaultResult, args)
@@ -67,3 +67,31 @@ function newFn(target, ...args) {
 
 
 // Object.create()实现原理
+
+function _create(proto, prototypeObj) {
+  if(prototypeObj === null) {
+     throw 'TypeError'
+  } else {
+    function Fn(){}
+    Fn.prototype = proto
+    const obj = new Fn()
+    if(proto === null) {
+      obj.__proto__ = null
+    }
+    return obj
+  }
+}
+
+// instanceof 实现原理
+// MDN上对instanceof方法的定义 instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。
+
+function _instanceof(left, right) {
+  if(typeof left !== 'object' && typeof left !== 'function') return false
+  const right = right.prototype
+
+  while(true) {
+    if(left === null) return false
+    if(left === right) return true
+    left = left.__proto__
+  }
+}
