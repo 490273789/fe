@@ -142,9 +142,13 @@
       console.log(bubble(arr))
       console.log(arr)
 
-      // 8 new实现原理
-      function _new() {
-        const constructor = Array.prototype.shift.call(arguments)
+    // 5 大驼峰转下划线
+    // 6 深度拷贝
+    // 7 冒泡排序
+    // 8 new实现原理
+    function _new(target,)
+    // 9 防抖函数
+    // 10 节流函数
 
         if (typeof constructor !== 'function') return
 
@@ -176,7 +180,7 @@
             if(!timer) {
               fn.apply(_this, arg)
               isInvoke = true
-            } 
+            }
 
             timer = setTimeout(() => {
               timer = null

@@ -44,3 +44,8 @@ function toHump(str) {
 }
 let hump = toHump('qw-er-rt')
 console.log(hump)
+
+
+function _new() {
+  
+}
