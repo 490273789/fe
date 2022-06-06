@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      题目： 给定一个数组 [1,2,3,4,5,6,7,8,9,0] 传入n n = 2 -> [[1,2],[3,4],[5,6],[7,8],[9,10]] n =
+      3 -> [[1,2,3],[4,5,6],[7,8,9],[0]]
+    </div>
+    <script>
+      const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+
+      Array.prototype._test = function (n) {
+        const length = this.length / n
+
+        const newArr = []
+
+        let index = 0
+
+        for (let i = 0; i < length; i++) {
+          newArr.push(this.slice(index, index + n))
+          index += n
+        }
+
+        return newArr
+      }
+
+      console.log(arr._test(3))
+
+      let i
+      for (i = 0; i < 3; i++) {
+        let log = () => console.log(i)
+        setTimeout(log, 0)
+      }
+
+      function demo() {
+        let x = (b = 0)
+        return x
+      }
+
+      demo()
+      console.log(typeof x)
+      console.log(typeof b)
+
+      // 对象作为Key的时候回调用其toString方法
+      var a1 = {}
+      var a2 = {
+        key: 'b',
+        toString() {
+          return 1
+        },
+      }
+      var a3 = { key: 'c' }
+      var a4 = [1, 2, 3]
+      a1[a2] = 123
+      //  a1[a3] = 234
+      a1[a4] = 345
+
+      console.log(a1)
+    </script>
+  </body>
+</html>

@@ -10,7 +10,7 @@
     <script>
       function _new() {
         // 获取构造函数
-        const constructor = [].shift.call(arguments)
+        const constructor = Array.prototype.shift.call(arguments)
         // 设置构造函数默认返回的对象
         // 设置默认返回对象的原型
         let object = Object.create(constructor.prototype)
