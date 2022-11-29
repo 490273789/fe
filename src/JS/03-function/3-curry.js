@@ -1,4 +1,23 @@
 // 柯里化： 将一个函数拆分成多个函数
+// 值传递给函数一部分参数来调用它，让他返回一个函数去处理剩余的参数，这个过程称为柯里化
+// 作用：
+// 1、让函数的职责单一
+// 2、
+function foo (m,n,x) {
+  return m + n + x
+}
+
+function fooCurry(m) {
+  return function(n) {
+    return function (x) {
+      return m + n + x
+    }
+  }
+}
+const result1 = fooCurry(1)(2)(3)
+
+const result2 = m => n => x => m + n + x
+
 // 高阶函数包含柯里化
 const utils = {}
 
@@ -64,3 +83,15 @@ types.forEach((type) => {
 // 第二次拆分
 console.log(utils.isString('str')) //传入第二个参数
 console.log(utils.isString(123))
+
+const currying  = (fn, args = []) => {
+  const length = fn.length
+
+  return (...param) => {
+    const arr = [...args, ...param]
+    if(args.length < length) {
+      return currying(fn, arr)
+    }
+    return fn.apply(this, arr)
+  }
+}

@@ -1,33 +1,34 @@
 // call函数源码
-Function.prototype.call = function () {
-  let [thisArg, ...args] = [...arguments]
-  if (!thisArg) {
-    thisArg = typeof window === 'undefined' ? global : window
-  }
-  thisArg.fnc = this
-  let result = thisArg.fnc(...args)
-  delete thisArg.fnc
+Function.prototype.cusCall = function(thisArg, ...args) {
+  thisArg = thisArg !== null && thisArg !== undefined ? Object(thisArg) : window
+  thisArg.fn = this
+  const result = thisArg.fn(...args)
+  delete thisArg.fn
   return result
 }
 
-// apply 函数源码
-Function.prototype.apply = function (thisArg, rest) {
+// apply 函数
+Function.prototype.cusApply = function(thisArg, rest) {
+  thisArg = thisArg !== null && thisArg !== undefined ? Object(thisArg) : window
+  thisArg.fn = this
   let result
-  if (!thisArg) {
-    thisArg = typeof window === 'undefined' ? global : window
-  }
-  thisArg.fnc = this
-  if (!rest) {
-    result = thisArg.fnc()
-  } else {
-    result = this.fnc(...rest)
-  }
-  delete thisArg.fnc
+  if(Array.isArray(rest)) result = thisArg.fn(...rest)
+  else if (rest === undefined) result = thisArg.fn()
+  else throw new Error('第二个参数需要穿数组')
+  delete thisArg.fn
   return result
 }
 
 // bind 函数源码
-Function.prototype.bind = function () {}
+Function.prototype.cusBind = function (thisArg, ...args) {
+  thisArg = thisArg !== null && thisArg !== undefined ? Object(thisArg) : window
+  return  (...param) => {
+    thisArg.fn = this
+    let result = thisArg.fn(...args, ...param)
+    delete thisArg.fn
+    return result
+  }
+}
 
 //构造函数基本原理
 
@@ -61,7 +62,7 @@ function newFn(target, ...args) {
     return result
   }
   return defaultResult
-  
+
 }
 
 
@@ -87,11 +88,11 @@ function _create(proto, prototypeObj) {
 
 function _instanceof(left, right) {
   if(typeof left !== 'object' && typeof left !== 'function') return false
-  const right = right.prototype
+  const rightCopy = right.prototype
 
   while(true) {
     if(left === null) return false
-    if(left === right) return true
+    if(left === rightCopy) return true
     left = left.__proto__
   }
 }

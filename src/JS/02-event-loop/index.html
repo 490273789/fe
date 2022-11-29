@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #outer {
+        width: 200px;
+        height: 200px;
+        background-color: #9966ff;
+      }
+
+      #inner {
+        width: 100px;
+        height: 100px;
+        background-color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="outer">
+      <div id="inner"></div>
+    </div>
+    <script>
+      let outer = document.getElementById('outer'),
+        inner = document.getElementById('inner')
+
+      let outHandler = function () {
+        alert('outer')
+      }
+      let innerHandler = function () {
+        alert('inner')
+      }
+
+      //情况一：点击 inner 的时候，会先弹出 inner，后弹出 outer
+      // outer.addEventListener('click', outHandler, false)
+      // inner.addEventListener('click', innerHandler, false)
+
+      //情况二：点击 inner 的时候，会先弹出 outer，后弹出 inner
+      // outer.addEventListener('click', outHandler, true)
+      // inner.addEventListener('click', innerHandler, true)
+      // const fn = (e) => console.log(e.target)
+      outer.addEventListener('click', ()=> {
+        console.log('outer冒泡')
+      })
+      outer.addEventListener('click', ()=> {
+        console.log('outer捕获')
+      }, true)
+
+      inner.addEventListener('click', ()=> {
+        console.log('inner捕获')
+      }, true)
+      inner.addEventListener('click', ()=> {
+        console.log('inner冒泡')
+      })
+
+
+
+    </script>
+  </body>
+</html>

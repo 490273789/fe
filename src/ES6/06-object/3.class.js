@@ -28,6 +28,7 @@ class Animal {
     this.name = name
     this.age = age
     this.sex = sex
+    this.a = 2
     this[isSwim] = '看自己'
   }
   // 定义在原型上的方法
@@ -82,7 +83,7 @@ console.log(dog.canFly('不会飞+1'))
 console.log(dog)
 console.dir(Dog)
 
-// vue事件总线的实现
+// // vue事件总线的实现
 class Bus {
   constructor() {
     this.callbacks = {}
@@ -93,7 +94,7 @@ class Bus {
   }
   $emit(name, args) {
     if (this.callbacks[name]) {
-      this.callbacks[name].forEacch((cb) => cb(args))
+      this.callbacks[name].forEach((cb) => cb(args))
     }
   }
 }

@@ -55,7 +55,6 @@ transaction(
 )
 
 // 装饰器
-
 Function.prototype.before = function (beforeFn) {
   return (...args) => {
     beforeFn()
