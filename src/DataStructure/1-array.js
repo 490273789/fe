@@ -36,3 +36,68 @@ for (let i = 0; i < outerLength; i++) {
     console.log(arr6[i][j])
   }
 }
+
+const bubbleArr = [5,6,4,7,3,2,1]
+// const bubbleArr = [1,2,3,4,6,5]
+// [6,5,4]
+// 冒泡排序 - 双层循环
+const bubbleSort = arr => {
+  for(let i = 0, len = arr.length; i < len; i++) {
+    let lock = true
+    console.log(i)
+    for(let j = 0; j < len - 1 - i; j++) {
+      if(arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+        lock = false
+      }
+    }
+    if(lock) return arr
+  }
+  return arr
+}
+
+console.log(bubbleSort(bubbleArr))
+
+// [4,3,2]
+const selectionArr = [7,3,6,1,5,8]
+
+// 选择排序
+const selectionSort = arr => {
+  const len = arr.length
+  let minIndex = 0
+  for(let i = 0; i < len - 1; i++) {
+    minIndex = i
+    for(let j = i; j < len; j++) {
+      if(arr[j] < arr[minIndex]) {
+        minIndex = j
+      }
+    }
+    if(minIndex !== i){
+      [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]]
+    }
+  }
+  return arr
+}
+
+console.log(selectionSort(selectionArr))
+
+const insertArr = [7,5,6,4,3,2]
+// 插入排序
+// 有序数组的后一位跟前面的有序数组比较，插入相应的位置
+const insertSort = arr => {
+  const len = arr.length
+
+  let temp
+
+  for(let i = 1; i < len; i++) {
+    temp = arr[i]
+    let j = i
+    while(j > 0 && arr[j - 1] > temp) {
+      arr[j] = arr[--j]
+    }
+    arr[j] = temp
+  }
+  return arr
+}
+
+console.log(insertSort(insertArr))

@@ -1,33 +1,34 @@
 // call函数源码
-Function.prototype.call = function () {
-  let [thisArg, ...args] = [...arguments]
-  if (!thisArg) {
-    thisArg = typeof window === 'undefined' ? global : window
-  }
-  thisArg.fnc = this
-  let result = thisArg.fnc(...args)
-  delete thisArg.fnc
+Function.prototype.cusCall = function(thisArg, ...args) {
+  thisArg = thisArg !== null && thisArg !== undefined ? Object(thisArg) : window
+  thisArg.fn = this
+  const result = thisArg.fn(...args)
+  delete thisArg.fn
   return result
 }
 
-// apply 函数源码
-Function.prototype.apply = function (thisArg, rest) {
+// apply 函数
+Function.prototype.cusApply = function(thisArg, rest) {
+  thisArg = thisArg !== null && thisArg !== undefined ? Object(thisArg) : window
+  thisArg.fn = this
   let result
-  if (!thisArg) {
-    thisArg = typeof window === 'undefined' ? global : window
-  }
-  thisArg.fnc = this
-  if (!rest) {
-    result = thisArg.fnc()
-  } else {
-    result = this.fnc(...rest)
-  }
-  delete thisArg.fnc
+  if(Array.isArray(rest)) result = thisArg.fn(...rest)
+  else if (rest === undefined) result = thisArg.fn()
+  else throw new Error('第二个参数需要穿数组')
+  delete thisArg.fn
   return result
 }
 
 // bind 函数源码
-Function.prototype.bind = function () {}
+Function.prototype.cusBind = function (thisArg, ...args) {
+  thisArg = thisArg !== null && thisArg !== undefined ? Object(thisArg) : window
+  return  (...param) => {
+    thisArg.fn = this
+    let result = thisArg.fn(...args, ...param)
+    delete thisArg.fn
+    return result
+  }
+}
 
 //构造函数基本原理
 
@@ -52,7 +53,7 @@ function _new() {
 
 function newFn(target, ...args) {
 
-  if(Object.prototype.toString.call(target) !== "[object Function]") return;
+  if(typeof target !== 'function') return;
   const defaultResult = Object.create({}, target.prototype)
 
   const result = target.apply(defaultResult, args)
@@ -61,9 +62,37 @@ function newFn(target, ...args) {
     return result
   }
   return defaultResult
-  
+
 }
 
 
 
 // Object.create()实现原理
+
+function _create(proto, prototypeObj) {
+  if(prototypeObj === null) {
+     throw 'TypeError'
+  } else {
+    function Fn(){}
+    Fn.prototype = proto
+    const obj = new Fn()
+    if(proto === null) {
+      obj.__proto__ = null
+    }
+    return obj
+  }
+}
+
+// instanceof 实现原理
+// MDN上对instanceof方法的定义 instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。
+
+function _instanceof(left, right) {
+  if(typeof left !== 'object' && typeof left !== 'function') return false
+  const rightCopy = right.prototype
+
+  while(true) {
+    if(left === null) return false
+    if(left === rightCopy) return true
+    left = left.__proto__
+  }
+}

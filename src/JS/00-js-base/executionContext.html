@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      debugger
+      var a = 1
+      let b = 2
+      const c = 3
+
+      function increment(num1, num2) {
+        var base1 = 10
+        let base2 = 20
+        return num1 + num2 + base1 + base2
+      }
+
+      function createFn(par) {
+        function bar () {
+          console.log(par)
+        }
+        return bar
+      }
+
+      a = increment(10, 20)
+      let z = createFn('closure!')
+    </script>
+  </body>
+</html>

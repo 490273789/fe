@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="wrap">
+    <tiv class="title">天选之号</tiv>
+    <div class="content">
+      <div class="number"></div>
+      <div class="probability"></div>
+      <div class="button"></div>
+    </div>
+  </div>
+
+  <script>
+    // 双色球： 1、前面六个为红色球，选号范围01-33 2、最后一位是蓝色球，选号范围01-16
+    const oBtn = document.getElementsByClassName('button')[0]
+    const oNum = document.getElementsByClassName('number')[0]
+    const oPro = document.getElementsByClassName('probability')[0]
+
+    oBtn.addEventListener('click', () => {
+      getNumber(len)
+    })
+
+    function getNumber(len) {
+      for(i = 0; i < len; i++) {
+        Math.random() * 100
+      }
+    }
+  </script>
+</body>
+</html>

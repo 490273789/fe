@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="">
+  <title>Document</title>
+  <style>
+    .fixed1 {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 20;
+      width: 100%;
+      height: 100px;
+      background-color: #9966ff;
+    }
+    .fixed2 {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: -1;
+      width: 100%;
+      height: 200px;
+      background-color: #66ff99;
+    }
+  </style>
+</head>
+<body>
+  <div class="fixed1"><div class="fixed2"></div></div>
+<script>
+  const tabIcon = document.head.querySelector("link[rel='icon']")
+  tabIcon.href = './favicon.ico'
+</script>
+</body>
+</html>

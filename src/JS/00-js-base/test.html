@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Bar extends Array {}
+
+      class Baz extends Array {
+        static get [Symbol.species]() {
+          console.log('11')
+          return Array
+        }
+      }
+
+      let bar = new Bar()
+
+      console.log(bar)
+
+      bar = bar.concat('bar')
+
+      console.log(bar)
+
+      let baz = new Baz()
+
+      console.log(baz)
+
+      baz = baz.concat('baz')
+
+      console.log(baz)
+    </script>
+  </body>
+</html>

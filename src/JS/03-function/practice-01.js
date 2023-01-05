@@ -55,7 +55,6 @@ transaction(
 )
 
 // 装饰器
-
 Function.prototype.before = function (beforeFn) {
   return (...args) => {
     beforeFn()
@@ -85,9 +84,9 @@ class Subject {
   }
   setState(state) {
     this.state = state
-    this.notifityObserver(state)
+    this.notifyObserver(state)
   }
-  notifityObserver(state) {
+  notifyObserver(state) {
     this.observer.forEach((obs) => {
       obs.update(state)
     })
@@ -99,7 +98,7 @@ class Subject {
 }
 
 class Observer {
-  constructor(subName, name, subject) {
+  constructor(subject, subName, name, ) {
     this.name = name
     this.subjectName = subName
     this.subject = subject
@@ -114,12 +113,8 @@ class Observer {
 let sub1 = new Subject()
 let sub2 = new Subject()
 
-let obs1 = new Observer('sub1', 'obs1', sub1)
-let obs2 = new Observer('sub1', 'obs2', sub1)
-let obs3 = new Observer('sub1', 'obs3', sub1)
-let obs4 = new Observer('sub2', 'obs4', sub2)
-let obs5 = new Observer('sub2', 'obs5', sub2)
-let obs6 = new Observer('sub2', 'obs6', sub2)
+let obs1 = new Observer(sub1,'sub1', 'obs1')
+let obs4 = new Observer(sub2,'sub2', 'obs4')
 sub1.setState(2)
 sub2.setState(3)
 
