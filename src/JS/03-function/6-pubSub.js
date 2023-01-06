@@ -1,5 +1,5 @@
 const fs = require('fs')
-
+// 发布订阅用的数据结构主要是队列，先进先出
 // 例子1
 let school = {}
 const event = {

@@ -51,39 +51,20 @@ const data = [
   },
 ]
 
+// 依赖于对队列，先进先出
 //  广度优先
-const bfs1 = data => {
-  const result = []
-  const queue = [data]
-  while(queue.length) {
-    const first = queue.shift()
-    const len = first.length
-    for(let i = 0; i < len; i++) {
-      result.push(first[i].value)
-      if(first[i].children && first.length) {
-        queue.push(first[i].children)
-      }
-    }
-  }
-  return result
-}
-
-console.log('bfs1: ', bfs1(data))
-
-
-//  广度优先
-const bfs2 = data => {
+const bfs = (data) => {
   const result = []
   const queue = [...data]
-  while(queue.length) {
+  while (queue.length) {
     const first = queue.shift()
     result.push(first.value)
     const len = first.children.length
-    for(let i = 0; i < len; i++) {
+    for (let i = 0; i < len; i++) {
       queue.push(first.children[i])
     }
   }
   return result
 }
 
-console.log('bfs2: ', bfs2(data))
+console.log('bfs2: ', bfs(data))

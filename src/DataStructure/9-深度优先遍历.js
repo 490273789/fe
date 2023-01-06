@@ -70,6 +70,7 @@ console.log('dfsTraversalPreorder: ', dfsTraversalPreorder(data))
 
 // 非递归
 // 深度优先
+// 依赖栈结构
 const dfs = (data) => {
   const result = []
   const stack = [...data]
@@ -77,7 +78,7 @@ const dfs = (data) => {
     const top = stack.pop()
     result.push(top.value)
     const len = top.children.length
-    for(let i = 0; i< len; i++){
+    for (let i = 0; i < len; i++) {
       stack.push(top.children[i])
     }
   }
@@ -86,4 +87,3 @@ const dfs = (data) => {
 }
 
 console.log('dfs: ', dfs(data))
-

@@ -28,7 +28,7 @@ node.next = new ListNode(2)
 
 console.log(node)
 // 在两个元素之间插入一个新的结点： 将前结点的next指向新的结点，再将新的结点的next指向后一结点
-node3 = new ListNode(3)
+const node3 = new ListNode(3)
 
 node3.next = node.next
 node.next = node3
