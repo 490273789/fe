@@ -1,0 +1,17 @@
+// 冒泡排序 - 双层循环
+
+const bubbleSort = (arr) => {
+  for (let i = 0, len = arr.length; i < len; i++) {
+    let lock = true
+    for (let j = 0; j < len - 1 - i; j++) {
+      if (arr[j] > arr[j + 1]) {
+        ;[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+        lock = false
+      }
+    }
+    if (lock) return arr
+  }
+  return arr
+}
+const arr = [5, 6, 4, 7, 3, 2, 1]
+console.log(bubbleSort(arr))

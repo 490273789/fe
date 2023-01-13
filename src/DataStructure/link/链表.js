@@ -110,3 +110,29 @@ class LinkList {
     return this.length
   }
 }
+
+const linkList = new LinkList()
+linkList.append(1)
+linkList.append(2)
+linkList.append(3)
+
+const l = linkList.getList()
+console.log(l)
+
+// 反转链表
+const reverseLink = (node) => {
+  let preNode = null
+  let currentNode = node
+  let nextNode = null
+
+  while (currentNode.next) {
+    nextNode = currentNode.next
+    currentNode.next = preNode
+    preNode = currentNode
+    currentNode = nextNode
+  }
+  currentNode.next = preNode
+  return currentNode
+}
+
+console.log('reverseLink:', reverseLink(l))
