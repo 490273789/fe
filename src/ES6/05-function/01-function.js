@@ -114,8 +114,6 @@ function average(...arg) {
   arg.sort(function (a, b) {
     return a - b
   })
-  arg.pop
-  arg.shift
   return computedScore(...arg) //读的操作，将数组展开
 }
 //求平均数

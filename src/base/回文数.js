@@ -1,5 +1,5 @@
 // 解法一：
-// 将整数转为字符串，然后分割问数组，只要循环一半的长度进行判断即可
+// 将整数转为字符串，然后分割成数组，只要循环一半的长度进行判断即可
 
 const isPalindrome1 = (x) => {
   const reverseStr = String(x).split('').reverse().join('')

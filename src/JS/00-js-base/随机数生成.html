@@ -9,20 +9,20 @@
 
   <body>
     <img src="http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg" alt="" />
-    <button>getimage</button>
+    <button>getImage</button>
     <ul></ul>
     <script type="text/javascript">
       //图片预加载:图片加载完成后整体显示
-      var oImg = new Image()
+      const oImg = new Image()
       oImg.src = ''
       oImg.onload = function () {
         document.body.appendChild(oImg)
       }
 
       //图片懒加载:触发事件后在出现图片
-      var oBtn = document.getElementsByTagName('button')
+      let oBtn = document.getElementsByTagName('button')
       oBtn.onclick = function () {
-        var oImg = new Image()
+        let oImg = new Image()
         oImg.src = ''
         document.body.appendChild(oImg)
       }
@@ -41,16 +41,28 @@
       // random() 返回0-1之间的随机数
       // round(x) 四舍五入为最近的整数
       // parseFloat() 将一个字符串转换成一个浮点数字
-      // parseInt转化为整数，但不进行四舍五入
-      //toFixed() 方法可把 Number 四舍五入为指定小数位数的数字 参数为0可以转化为整数，并进行四舍五入。不过结果为string类型
+      // parseInt() 转化为整数，但不进行四舍五入
+      // toFixed() 方法可把 Number 四舍五入为指定小数位数的数字 参数为0可以转化为整数，并进行四舍五入。不过结果为string类型
       // Math.floor(Math.random() * (max + 1 - min) + min)
-      Math.floor(Math.random() * 7 + 4)
+      // 生成一个区间的随机数
+      const maxNumber = (max, min) => Math.floor((Math.random() * (max - min +1) + min))
+      console.log(maxNumber(10, 5))
+
+      // 生成一个固定位数的随机数
+      const randomNumber = (n) => {
+        let result = ''
+        while(n-- > 0){
+          result += Math.floor(Math.random() * 10)
+        }
+        return result
+      }
+      console.log(randomNumber(10))
 
       //文档碎片:提高效率,减少浏览器渲染效率
-      var oUl = document.getElementsByTagName('ul')[0]
-      var oFrag = document.createDocumentFragment() //创建文档碎片
-      for (var i = 0; i < 1000; i++) {
-        var oLi = document.createElement('li') //创建li
+      let oUl = document.getElementsByTagName('ul')[0]
+      const oFrag = document.createDocumentFragment() //创建文档碎片
+      for (let i = 0; i < 1000; i++) {
+        const oLi = document.createElement('li') //创建li
         oLi.innerHTML = i //给li标签添加内容
         oFrag.appendChild(oLi) //将li加入到ul中
       }

@@ -41,7 +41,6 @@ class Stack {
 function transform(num) {
   const stack = new Stack()
   let result = ''
-  debugger
   while (num > 0) {
     const remainder = num % 2
     stack.push(remainder)

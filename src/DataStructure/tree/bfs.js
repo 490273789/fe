@@ -1,3 +1,4 @@
+// breadth first search - 广度优先遍历
 const data = [
   {
     value: '0-1',
@@ -50,40 +51,24 @@ const data = [
   },
 ]
 
-// Depth First Search
-// 递归版本-前序
-const depthFirstSearch = (data) => {
+/**
+ * 广度优先
+ * 依赖于对队列，先进先出
+ * @param data
+ * @returns {*[]}
+ */
+const bfs = (data) => {
   const result = []
-  const dfs = (node) => {
-    node.forEach((node) => {
-      result.push(node.value)
-      if (node.children && node.children.length) {
-        dfs(node.children)
-      }
-    })
-  }
-  dfs(data)
-  return result
-}
-
-console.log('dfsTraversalPreorder: ', depthFirstSearch(data))
-
-// 非递归
-// 深度优先
-// 依赖栈结构
-const dfs = (data) => {
-  const result = []
-  const stack = [...data]
-  while (stack.length) {
-    const top = stack.pop()
-    result.push(top.value)
-    const len = top.children.length
+  const queue = [...data]
+  while (queue.length) {
+    const first = queue.shift()
+    result.push(first.value)
+    const len = first.children.length
     for (let i = 0; i < len; i++) {
-      stack.push(top.children[i])
+      queue.push(first.children[i])
     }
   }
-
   return result
 }
 
-console.log('dfs: ', dfs(data))
+console.log('bfs2: ', bfs(data))

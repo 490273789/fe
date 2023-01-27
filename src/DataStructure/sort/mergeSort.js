@@ -1,6 +1,7 @@
 // 归并排序 - 分治
 // 将数组拆分为length为1的数组，两两比较，是每个length大于1的数组都为有序数组，然后就是有序数组的比较
 
+// 合并有序数组
 function merge(left, right) {
   let result = []
   while (left.length && right.length) {
