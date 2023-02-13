@@ -11,11 +11,11 @@ const arr5 = new Array(7).fill(1)
 
 // 数组的访问和遍历
 // arr1[0] // 通过下标访问元素
-
 const len = arr1.length
 for (let i = 0; i < len; i++) {
   console.log(arr1[i])
 }
+
 // 还有forEach和map，reduce
 // 在数学中，刑辱长方形阵列排列的负数或实数集合，被称为矩阵，因此二维数组的别名叫矩阵
 
