@@ -1,12 +1,12 @@
-function isObject (obj) {
+function isObject(obj) {
   return obj !== null && typeof obj === 'object'
 }
 
-function type (value) {
+function type(value) {
   return Object.prototype.toString.call(value).slice(8, -1)
 }
 /**
- * @description: 防抖函数- 操作结束后一段时间wait秒内，没有再次触发该操作，fn才执行
+ * 防抖函数- 操作结束后一段时间wait秒内，没有再次触发该操作，fn才执行
  * 使用场景：input框输入的模糊查询、防止重复抽奖/支付等
  * @param {func: Function} 要执行的目标函数
  * @param {wait: number} 等待的时间
@@ -28,7 +28,7 @@ export function debounce(func, wait, immediate) {
 }
 
 /**
- * @description: 节流函数  - 每次间隔相同的时间执行一次函数
+ * 节流函数  - 每次间隔相同的时间执行一次函数
  * 使用场景：比如获取滚动条当前位置
  * @param {func: Function}  回调函数
  * @param {wait: number} 等待时间
@@ -62,7 +62,6 @@ export function throttle(func, wait, type) {
 }
 
 /**
- * @description:
  * 缺点：1:不能识别function，RegExp，Data这写函数类型
  *      2:所有对象的constructor属性都会被改变为Object函数
  *      3:会忽略Symbol和undefined
@@ -74,7 +73,7 @@ export const deepClone1 = (value) => {
 }
 
 /**
- * @description: 深拷贝2
+ * 深拷贝2
  * @param {*}
  * @return {*}
  */
@@ -110,7 +109,7 @@ let obj2 = deepClone2(obj)
 console.log(obj2)
 
 /**
- * @description: 判断数据类型
+ * 判断数据类型
  * @param {*} target: any - 需要判断的数据
  * @return {*}
  */
@@ -137,7 +136,7 @@ export function type(target) {
 }
 
 /**
- * @description: dispatch - vue中遍历通知所有父组件
+ * dispatch - vue中遍历通知所有父组件
  * vue2中已删除，很多UI库在使用
  * @param {*} component
  * @param {*} eventName
@@ -161,7 +160,7 @@ export function dispatch(component, eventName, params) {
 }
 
 /**
- * @description: broadcast - vue中遍历通知所有子组件
+ * broadcast - vue中遍历通知所有子组件
  * @param {*} component
  * @param {*} eventName
  * @param {*} params
@@ -179,17 +178,17 @@ export function broadcast(component, eventName, params) {
 }
 
 /**
- * @description: 面试题 - trim函数
+ * 面试题 - trim函数
  * @param {*} str: string - 需要处理的字符串
  * @return {*}
  */
 export function trim(str) {
-  return str.replace(/(^\s+)|(\s+$)/g, '')//trim函数去掉前后空格
+  return str.replace(/(^\s+)|(\s+$)/g, '') //trim函数去掉前后空格
   // return params.replace(/(\s+)/g, '')//trim函数去掉全部空格
 }
 
 /**
- * @description: 面试题 - 下划线转驼峰函数
+ * 面试题 - 下划线转驼峰函数
  * replace函数，第一个参数会将为正则或者字符串
  * 第二个参数可以是$1,$2... 或者是字符串，或者是函数
  * 函数第一个值为匹配到项，第二个值为子项，第三个值为匹配到位置的索引，第四个至为整个字符串
@@ -208,7 +207,7 @@ let hump = toHump('qw-er-rt')
 console.log(hump)
 
 /**
- * @description: 驼峰转下划线
+ * 驼峰转下划线
  * @param {*} str: string - 需要处理的字符串
  * @return {*}
  */
@@ -219,7 +218,7 @@ let str8 = 'sdDateCase'
 console.log(toLine(str8))
 
 /**
- * @description: 获取Body元素当前滚动条的位置
+ * 获取Body元素当前滚动条的位置
  * 使用场景：比如获取滚动条当前位置
  * @return: Object 当前body元素滚动条的x, y坐标
  */
@@ -238,7 +237,7 @@ export function getScrollOffset() {
 }
 
 /**
- * @description: 获取url中的参数
+ * 获取url中的参数
  * @param {name： string}  需要查询参数的name
  * @return: 查询到的参数值，没有查询到则返回null
  */
@@ -252,7 +251,7 @@ export function getQueryString(name) {
 }
 
 /**
- * @description: 工具函数获取前（后）n天的时间
+ * 工具函数获取前（后）n天的时间
  * @param {Number} AddDayCount 传入要减少的天数
  * @param {String} type 日期之间连接的字符，不传默认为‘-’
  * @return: {String} 格式化后的日期字符串 eg：2020-04-29
@@ -267,7 +266,7 @@ export function getDateStr(AddDayCount, type = '-') {
 }
 
 /**
- * @description: 选择后展示在头部上的日期格式
+ * 选择后展示在头部上的日期格式
  * @param {*} date: Date - 日期
  * @param {*} type: String - 日期连接的字符
  * @return: {*} String - 格式化后的日期字符串
@@ -279,7 +278,7 @@ export function formatDate(date, type) {
 }
 
 /**
- * @description: 获取当前时间格式化
+ * 获取当前时间格式化
  * @param {type： string}  时间的展示格式 - 或者 \
  * @return: string 时间字符串
  */
@@ -298,7 +297,7 @@ export function getCurrentDate(type) {
 }
 
 /**
- * @description: 日期转换时间戳
+ * 日期转换时间戳
  * @param {Date: date}  时间的链接方式
  * @return: 时间戳
  */
@@ -309,7 +308,7 @@ export function getTime(date) {
 }
 
 /**
- * @description: 获取当前窗口的高度与宽度
+ * 获取当前窗口的高度与宽度
  * @param {*}
  * @return {Object} w: 当前窗口的宽度 h: 当前窗口的宽度
  */
@@ -334,7 +333,7 @@ export function getViewportOffset() {
 }
 
 /**
- * @description: 获取当前元素的位置
+ * 获取当前元素的位置
  * @param {ele: DOM} DOM对象
  * @return {object} w: 横坐标， h: 纵坐标
  */
@@ -349,7 +348,7 @@ export function getElementOffset(ele) {
 }
 
 /**
- * @description: 元素距离Body元素的距离
+ * 元素距离Body元素的距离
  * @param {ele: DOM} DOM对象
  * @return {*} x: 横向距离，y: 纵向距离
  */
@@ -384,7 +383,7 @@ export function getStyle(elem, prop) {
 }
 
 /**
- * @description: 添加事件兼容性写法
+ * 添加事件兼容性写法
  * @param {*} elem: DOM - DOM元素
  * @param {*} type: string - 事件类型
  * @param {*} handler: Function - 处理函数
@@ -406,7 +405,7 @@ export function addEvent(elem, type, handler) {
 }
 
 /**
- * @description: 移除事件兼容性写法
+ * 移除事件兼容性写法
  * @param {*} elem: DOM - DOM元素
  * @param {*} type: string - 事件类型
  * @param {*} handler: Function - 处理函数
@@ -423,7 +422,7 @@ export function removeEvent(elem, type, handler) {
 }
 
 /**
- * @description: 阻止事件冒泡
+ * 阻止事件冒泡
  * @param {*} event: event - 事件对象
  * @return {*}
  */
@@ -436,7 +435,7 @@ export function stopBubble(event) {
 }
 
 /**
- * @description: 取消默认事件
+ * 取消默认事件
  * @param {*} event: event - 事件对象
  * @return {*}
  */
@@ -449,7 +448,7 @@ export function cancelHandler(event) {
 }
 
 /**
- * @description: 实现拖拽
+ * 实现拖拽
  * @param {*} elem: DOM - DOM对象
  * @return {*}
  */
@@ -478,7 +477,7 @@ export function drag(elem) {
 
 //
 /**
- * @description: 异步加载
+ * 异步加载
  * @param {*} url: string - 文件路径
  * @param {*} callback: Function - 回调函数
  * @return {*}

@@ -4,7 +4,6 @@
 
 //发布者
 class Subject {
-
   constructor() {
     this.state = 0
     this.observer = []
@@ -16,9 +15,11 @@ class Subject {
     this.state = state
     this.notifyAllObserver()
   }
+
   addObserver(observer) {
     this.observer.push(observer)
   }
+
   notifyAllObserver() {
     this.observer.forEach((observer) => {
       observer.update()
@@ -28,7 +29,7 @@ class Subject {
 
 //观察者
 class Observer {
-  constructor(subject, name ) {
+  constructor(subject, name) {
     this.name = name
     this.subject = subject
     this.subject.addObserver(this)
@@ -39,7 +40,7 @@ class Observer {
 }
 
 let sub = new Subject()
-let obs1 = new Observer(sub,'obs1')
-let obs2 = new Observer(sub,'obs2')
+new Observer(sub, 'obs1')
+new Observer(sub, 'obs2')
 
 sub.setstate(2)
