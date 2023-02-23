@@ -6,34 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BFC</title>
     <style>
-      .normal_flow {
+      .float_flow {
         float: left;
+        border: 2px solid #ff6699;
+      }
+      .normal_flow {
+        width: 120px;
+        border: 2px solid #66ff99;
+        height: 50px;
       }
       .bfc_area {
+        width: 120px;
         overflow: hidden;
+        border: 2px solid #6699ff;
+        padding: 5px;
       }
-      .column {
-        width: 31.33%;
-        background-color: green;
+      .float_item {
         float: left;
-        margin: 0 1%;
+        height: 50px;
+        width: 50px;
+        border: 1px solid #99ff66;
       }
-      /*  Establishing a new block formatting
-    context in the last column */
-      .column:last-child {
-        float: none;
-        overflow: hidden;
+      .normal_item-1 {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+        border: 1px solid #99ff66;
+      }
+      .normal_item-2 {
+        width: 50px;
+        height: 50px;
+        margin-top: 20px;
+        border: 1px solid #99ff66;
       }
     </style>
   </head>
   <body>
     <!-- 格式化块级上下文 （Block Formatting Context,BFC） -->
-    <!-- 是一个独立的渲渲染区域，她】它规定了块级元素如何布局，并且与区域外部毫不相干 -->
+    <!-- 是一个独立的渲渲染区域，它规定了块级元素如何布局，并且与区域外部毫不相干 -->
     <!--
       创建块格式上下文：
       1、根元素(HTML)
-      2、浮动元素（float不是none）
-      3、绝对定位元素（position为absolute或fixed）
+      2、float不是none
+      3、position为absolute或fixed
       4、display为inline-block、table-cell、table-caption、table、inline-table、flex、inline-flex、grid、inline-grid
       5、position值为 absolute、fixed
       6、overflow 值不是 visible 的块元素
@@ -41,28 +56,35 @@
 
     <!--
        BFC的布局规则：
-       1、内部的box垂直方向一个接一个的方式
+       1、内部的块级盒子垂直方向一个接一个的方式
        2、box垂直方向的距离由margin决定，属于同一个BFC的两个相邻box的margin会发生重叠
-       3、每个元素的左外边距与包含块的左边界相接触（从左向右），即使浮动元素也是如此。（这说明BFC中子元素不会超出他的包含块，而position为absolute的元素可以超出他的包含块边界）
-       4、BFC区域不会与float box重叠
+       3、BFC区域不会与float box重叠
+       4、计算BFC内部的高度时，浮动元素也跟着计算
        5、BFC就是页面上的一个独立容器，容器里面的子元素不会影响到外面的元素
-       6、计算BFC内部的高度时，浮动元素也跟着计算
     -->
 
     <div class="wrap">
-      <div class="normal_flow">123</div>
+      <h3>1、BFC区域不会与float box重叠</h3>
+      <div class="float_flow">666</div>
+      <div class="normal_flow">888</div>
+      <br />
+      <div class="float_flow">666</div>
       <div class="bfc_area">
-
-        <div>3</div>
         <div>4</div>
-        <span>2</span>
+        <div>5</div>
       </div>
-    </div>
 
-    <div class="container">
-      <div class="column">column 1</div>
-      <div class="column">column 2</div>
-      <div class="column">column 3</div>
+      <h3>2、计算BFC内部的高度时，浮动元素也跟着计算</h3>
+      <div class="bfc_area">
+        <div class="float_item">4</div>
+        <div class="float_item">5</div>
+      </div>
+
+      <h3>3、box垂直方向的距离由margin决定，属于同一个BFC的两个相邻box的margin会发生重叠</h3>
+      <div class="bfc_area">
+        <div class="normal_item-1">4</div>
+        <div class="normal_item-2">5</div>
+      </div>
     </div>
   </body>
 </html>

@@ -1,36 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <div class="wrap">
-    <tiv class="title">天选之号</tiv>
-    <div class="content">
-      <div class="number"></div>
-      <div class="probability"></div>
-      <div class="button"></div>
-    </div>
-  </div>
-
-  <script>
-    // 双色球： 1、前面六个为红色球，选号范围01-33 2、最后一位是蓝色球，选号范围01-16
-    const oBtn = document.getElementsByClassName('button')[0]
-    const oNum = document.getElementsByClassName('number')[0]
-    const oPro = document.getElementsByClassName('probability')[0]
-
-    oBtn.addEventListener('click', () => {
-      getNumber(len)
-    })
-
-    function getNumber(len) {
-      for(i = 0; i < len; i++) {
-        Math.random() * 100
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wrap {
+        margin: auto;
+        width: 600px;
+        height: 400px;
+        border: 2px solid #d00a3f;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
       }
-    }
-  </script>
-</body>
+      .title {
+        color: #17b0b3;
+      }
+      .content {
+        display: flex;
+        margin-bottom: 88px;
+      }
+      .red {
+        width: 400px;
+        height: 50px;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        margin-right: 40px;
+      }
+      .red-item {
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        border-radius: 50%;
+        font-size: 20px;
+        font-weight: bold;
+        background: #d00a3f;
+        transition: all 1.5s linear;
+      }
+      .blue {
+        width: 60px;
+        height: 50px;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+      }
+      .blue-item {
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        border-radius: 50%;
+        font-size: 20px;
+        font-weight: bold;
+        background: #3717b3;
+        transition: all 1.5s linear;
+      }
+      .translate {
+        transform: rotate(180deg);
+        transform-origin: center;
+      }
+
+      .count {
+        color: #d00a3f;
+        font-size: 24px;
+        font-weight: bold;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 88px;
+      }
+      .button {
+        color: #fff;
+        background: #82b317;
+        width: 88px;
+        height: 39px;
+        text-align: center;
+        line-height: 39px;
+        cursor: pointer;
+        border-radius: 6px;
+        border: 1px solid #82b317;
+      }
+      .button:active {
+        color: #82b317;
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1 class="title">天选之号</h1>
+      <div class="content">
+        <div class="red">
+          <div class="red-item">00</div>
+          <div class="red-item">00</div>
+          <div class="red-item">00</div>
+          <div class="red-item">00</div>
+          <div class="red-item">00</div>
+          <div class="red-item">00</div>
+        </div>
+
+        <div class="blue">
+          <div class="blue-item">00</div>
+        </div>
+      </div>
+      <div class="count">00</div>
+      <button class="button">选号</button>
+    </div>
+
+    <script>
+      const titles = ['辣鸡', '财富自由', '肯德基', '麦当劳', '摩托']
+      // 双色球： 1、前面六个为红色球，选号范围01-33 2、最后一位是蓝色球，选号范围01-16
+      // “双色球”每注投注号码由6个红色球号码和1个蓝色球号码组成。红色球号码从1--33中选择；蓝色球号码从1--16中选择。
+
+      // 生成最大max，最小min的随机数
+      const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+
+      // 添加子元素
+      const appendChild = (parent, child) => {
+        parent.appendChild(child)
+      }
+
+      // 添加文本
+      const appendText = (parent, text) => {
+        parent.innerText = text
+      }
+
+      // 获取元素
+      const queryElement = (flag) => document.querySelector(flag)
+
+      // 获取所有元素
+      const queryElements = (flag) => document.querySelectorAll(flag)
+
+      // 渲染中奖号
+      const renderNumber = (className, maxNumber) => {
+        queryElements(className).forEach((oDiv) => {
+          appendText(oDiv, random(1, maxNumber))
+          oDiv.classList.remove('translate')
+        })
+      }
+
+      // 渲染标题
+      const renderTitle = (titles) => {
+        const oTitle = document.querySelector('.title')
+        let index = random(0, 4)
+        const title = titles[index]
+        appendText(oTitle, title)
+      }
+
+      // 渲染注数
+      const renderCount = () => {
+        appendText(queryElement('.count'), random(1, 10))
+      }
+
+      // 动画效果
+      const processLoading = (flag) => {
+        const allElement = queryElements(flag)
+        for (let i = 0, length = allElement.length; i < length; i++) {
+          allElement[i].classList.add('translate')
+        }
+      }
+
+      // 入口函数
+      const startGenerateNumber = () => {
+        processLoading('.red-item')
+        processLoading('.blue-item')
+        const timer = setTimeout(() => {
+          renderTitle(titles)
+          renderNumber('.red-item', 33)
+          renderNumber('.blue-item', 16)
+          renderCount()
+        }, 500)
+      }
+
+      // 绑定事件
+      queryElement('.button').addEventListener('click', () => {
+        startGenerateNumber()
+      })
+    </script>
+  </body>
 </html>
